@@ -1,0 +1,17 @@
+{
+  "name": "purescript-distribution",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-lists": "~0.6.2",
+    "purescript-tuples": "~0.3.4",
+    "purescript-integers": "~0.1.0"
+  }
+}
