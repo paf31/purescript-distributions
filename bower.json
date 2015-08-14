@@ -1,5 +1,5 @@
 {
-  "name": "purescript-distribution",
+  "name": "purescript-distributions",
   "moduleType": [
     "node"
   ],
@@ -9,6 +9,10 @@
     "bower_components",
     "output"
   ],
+  "repository": {                                               
+    "type": "git",                                              
+    "url": "git://github.com/paf31/purescript-distributions.git" 
+  },                                                             
   "dependencies": {
     "purescript-lists": "~0.7.1",
     "purescript-integers": "~0.2.1",
