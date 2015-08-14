@@ -10,8 +10,8 @@
     "output"
   ],
   "dependencies": {
-    "purescript-lists": "~0.6.2",
-    "purescript-tuples": "~0.3.4",
-    "purescript-integers": "~0.1.0"
+    "purescript-lists": "~0.7.1",
+    "purescript-integers": "~0.2.1",
+    "purescript-functions": "~0.1.0"
   }
 }

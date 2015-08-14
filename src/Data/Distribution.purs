@@ -7,6 +7,8 @@ module Data.Distribution
   , observe
   ) where
 
+import Prelude
+
 import Data.List
 import Data.Tuple
 import Data.Foldable (fold)
@@ -31,24 +33,25 @@ runDist (Dist d) = d
 -- | Unpack the observations in a distribution, combining any probabilities for
 -- | duplicate observations.
 observe :: forall p a. (Semiring p, Eq a) => Dist p a -> List (Tuple p a)
-observe d = collect <$> groupBy ((==) `on` snd) (runDist d)
+observe = map collect <<< groupBy (eq `on` snd) <<< runDist
   where
   collect :: List (Tuple p a) -> Tuple p a
-  collect d@(Cons (Tuple _ a) _) = 
-    let p = runAdditive (fold (Additive <<< fst <$> d))
-    in Tuple p a
+  collect d = case Data.List.Unsafe.head d of
+    Tuple _ a -> 
+      let p = runAdditive (fold (map (Additive <<< fst) d))
+      in Tuple p a
 
 instance functorDist :: Functor (Dist p) where
-  (<$>) f (Dist d) = Dist ((f <$>) <$> d)
+  map f (Dist d) = Dist (map f <$> d)
 
 instance applyDist :: (Semiring p) => Apply (Dist p) where
-  (<*>) = ap
+  apply = ap
   
 instance applicativeDist :: (Semiring p) => Applicative (Dist p) where
   pure a = Dist (pure (Tuple one a))
   
 instance bindDist :: (Semiring p) => Bind (Dist p) where
-  (>>=) d f = Dist do
+  bind d f = Dist do
      Tuple p1 a <- runDist d
      Tuple p2 b <- runDist (f a)
      return (Tuple (p1 * p2) b)
@@ -56,7 +59,7 @@ instance bindDist :: (Semiring p) => Bind (Dist p) where
 instance monadDist :: (Semiring p) => Monad (Dist p)
 
 instance altDist :: Alt (Dist p) where
-  (<|>) d1 d2 = Dist (runDist d1 <|> runDist d2)
+  alt d1 d2 = Dist (runDist d1 <|> runDist d2)
   
 instance plusDist :: Plus (Dist p) where
   empty = Dist empty
