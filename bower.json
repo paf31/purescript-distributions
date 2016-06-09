@@ -9,13 +9,15 @@
     "bower_components",
     "output"
   ],
-  "repository": {                                               
-    "type": "git",                                              
-    "url": "git://github.com/paf31/purescript-distributions.git" 
-  },                                                             
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paf31/purescript-distributions.git"
+  },
   "dependencies": {
-    "purescript-lists": "~0.7.1",
-    "purescript-integers": "~0.2.1",
-    "purescript-functions": "~0.1.0"
+    "purescript-lists": "^1.0.0",
+    "purescript-integers": "^1.0.0"
+  },
+  "devDependencies": {
+    "purescript-console": "^1.0.0"
   }
 }

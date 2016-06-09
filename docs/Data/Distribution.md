@@ -13,15 +13,16 @@ A distribution of values of type `a`, with "probabilities" in some `Semiring p`.
 
 ##### Instances
 ``` purescript
-instance functorDist :: Functor (Dist p)
-instance applyDist :: (Semiring p) => Apply (Dist p)
-instance applicativeDist :: (Semiring p) => Applicative (Dist p)
-instance bindDist :: (Semiring p) => Bind (Dist p)
-instance monadDist :: (Semiring p) => Monad (Dist p)
-instance altDist :: Alt (Dist p)
-instance plusDist :: Plus (Dist p)
-instance alternativeDist :: (Semiring p) => Alternative (Dist p)
-instance monadPlusDist :: (Semiring p) => MonadPlus (Dist p)
+Functor (Dist p)
+(Semiring p) => Apply (Dist p)
+(Semiring p) => Applicative (Dist p)
+(Semiring p) => Bind (Dist p)
+(Semiring p) => Monad (Dist p)
+Alt (Dist p)
+Plus (Dist p)
+(Semiring p) => Alternative (Dist p)
+(Semiring p) => MonadZero (Dist p)
+(Semiring p) => MonadPlus (Dist p)
 ```
 
 #### `dist`
@@ -35,7 +36,7 @@ Create a distribution from a list of values and probabilities.
 #### `observe`
 
 ``` purescript
-observe :: forall p a. (Semiring p, Eq a) => Dist p a -> List (Tuple p a)
+observe :: forall p a. (Semiring p, Ord a) => Dist p a -> List (Tuple p a)
 ```
 
 Unpack the observations in a distribution, combining any probabilities for

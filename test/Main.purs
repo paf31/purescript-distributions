@@ -2,32 +2,28 @@ module Test.Main where
 
 import Prelude
 
-import Data.Int
-import Data.Tuple
-import Data.Distribution
-
-import Control.Alt
-import Control.MonadPlus
-
-import Control.Monad.Eff.Console
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (CONSOLE, logShow)
+import Control.MonadPlus (guard, (<|>))
+import Data.Distribution (Dist, observe)
+import Data.Tuple (Tuple(..))
 
 type Die = Int
 
-die :: Dist Int Die
+die :: Dist Number Die
 die = pure 1
   <|> pure 2
   <|> pure 3
-  <|> pure 4 
-  <|> pure 5 
+  <|> pure 4
+  <|> pure 5
   <|> pure 6
-  
-twoDice :: Dist Int (Tuple Die Die)
-twoDice = Tuple <$> die <*> die
 
-rollSeven :: Dist Int (Tuple Die Die)
+rollSeven :: Dist Number Die
 rollSeven = do
-  t@(Tuple d1 d2) <- twoDice
-  guard $ d1 + d2 == 7
-  return t
+  d1 <- die
+  d2 <- die
+  guard (d1 + d2 >= 7)
+  pure (d1 + d2)
 
-main = print (observe rollSeven)
+main :: forall eff. Eff (console :: CONSOLE | eff) Unit
+main = logShow (observe rollSeven)
