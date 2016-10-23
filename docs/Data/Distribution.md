@@ -7,6 +7,7 @@ to an arbitrary `Semiring`.
 
 ``` purescript
 data Dist p a
+  = Dist (List (Tuple p a))
 ```
 
 A distribution of values of type `a`, with "probabilities" in some `Semiring p`.

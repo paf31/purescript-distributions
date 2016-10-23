@@ -6,7 +6,6 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, logShow)
 import Control.MonadPlus (guard, (<|>))
 import Data.Distribution (Dist, observe)
-import Data.Tuple (Tuple(..))
 
 type Die = Int
 
