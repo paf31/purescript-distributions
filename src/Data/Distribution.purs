@@ -30,7 +30,7 @@ runDist (Dist d) = d
 
 -- | Unpack the observations in a distribution, combining any probabilities for
 -- | duplicate observations.
-observe :: forall p a. (Semiring p, Ord a) => Dist p a -> List (Tuple p a)
+observe :: forall p a. Semiring p => Ord a => Dist p a -> List (Tuple p a)
 observe =
     map collect <<< groupBy (eq `on` snd) <<< sortBy (comparing snd) <<< runDist
   where
