@@ -37,7 +37,7 @@ Create a distribution from a list of values and probabilities.
 #### `observe`
 
 ``` purescript
-observe :: forall p a. (Semiring p, Ord a) => Dist p a -> List (Tuple p a)
+observe :: forall p a. Semiring p => Ord a => Dist p a -> List (Tuple p a)
 ```
 
 Unpack the observations in a distribution, combining any probabilities for
