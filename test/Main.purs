@@ -2,10 +2,10 @@ module Test.Main where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, logShow)
 import Control.MonadPlus (guard, (<|>))
 import Data.Distribution (Dist, observe)
+import Effect (Effect)
+import Effect.Console (logShow)
 
 type Die = Int
 
@@ -24,5 +24,5 @@ rollSeven = do
   guard (d1 + d2 >= 7)
   pure (d1 + d2)
 
-main :: forall eff. Eff (console :: CONSOLE | eff) Unit
+main :: Effect Unit
 main = logShow (observe rollSeven)

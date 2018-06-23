@@ -15,9 +15,9 @@
     "url": "git://github.com/paf31/purescript-distributions.git"
   },
   "dependencies": {
-    "purescript-lists": "^4.0.0"
+    "purescript-lists": "^5.0.0"
   },
   "devDependencies": {
-    "purescript-console": "^3.0.0"
+    "purescript-console": "^4.0.0"
   }
 }
